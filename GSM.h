@@ -17,7 +17,7 @@
 #define lf    10 //Ascii character for line feed.
 #define GSM_LIB_VERSION 308 // library version X.YY (e.g. 1.00)
 
-#define DEBUG_ON
+//#define DEBUG_ON
 
 
 #ifdef MEGA
@@ -184,8 +184,8 @@ class GSM
     unsigned long prev_time;        // previous time in msec.
 
     // last value of speaker volume
-    byte last_speaker_volume; 
-    char InitSMSMemory(void);
+//    byte last_speaker_volume; 
+//    char InitSMSMemory(void);
 
   protected:
 	#ifdef MEGA
@@ -225,7 +225,7 @@ class GSM
 
 	//-----------------------
 	// turns off/on the speaker
-	void SetSpeaker(byte off_on);
+//	void SetSpeaker(byte off_on);
 	// checks if module is registered in the GSM network
 	// must be called regularly
 	byte CheckRegistration(void);
@@ -237,10 +237,10 @@ class GSM
 	byte IsUserButtonPushed(void);  
 
 	// Phonebook's methods
-	char GetPhoneNumber(byte position, char *phone_number);
-	char WritePhoneNumber(byte position, char *phone_number);
-	char DelPhoneNumber(byte position);
-	char ComparePhoneNumber(byte position, char *phone_number);
+//	char GetPhoneNumber(byte position, char *phone_number);
+//	char WritePhoneNumber(byte position, char *phone_number);
+//	char DelPhoneNumber(byte position);
+//	char ComparePhoneNumber(byte position, char *phone_number);
 
 	// returns registration state
 	byte IsRegistered(void);

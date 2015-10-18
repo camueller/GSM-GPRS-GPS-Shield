@@ -15,7 +15,7 @@ based on QuectelM10 chip.
 */
 
 #include "GSM.h"
-#include "WideTextFinder.h"
+//#include "WideTextFinder.h"
 
 //De-comment this two lines below if you have the
 //first version of GSM GPRS Shield
@@ -24,8 +24,10 @@ based on QuectelM10 chip.
 
 //De-comment this two lines below if you have the
 //second version og GSM GPRS Shield
-#define _GSM_TXPIN_ 2
-#define _GSM_RXPIN_ 3	
+//#define _GSM_TXPIN_ 2
+//#define _GSM_RXPIN_ 3	
+#define _GSM_TXPIN_ 10
+#define _GSM_RXPIN_ 11	
 
 
 #ifdef UNO
@@ -364,7 +366,7 @@ void GSM::InitParam(byte group){
 		// select speaker volume (0 to 14)
 		//SetSpeakerVolume(9);
 		// init SMS storage
-		InitSMSMemory();
+//		InitSMSMemory();
 		// select phonebook memory storage
 		SendATCmdWaitResp(F("AT+CPBS=\"SM\""), 1000, 50, "OK", 5);
 		SendATCmdWaitResp(F("AT+CIPSHUT"), 500, 50, "SHUT OK", 5);
@@ -706,29 +708,6 @@ void GSM::Echo(byte state)
 	  delay(500);
 	  SetCommLineStatus(CLS_FREE);
 	}
-}
-
-char GSM::InitSMSMemory(void) 
-{
-  char ret_val = -1;
-
-  if (CLS_FREE != GetCommLineStatus()) return (ret_val);
-  SetCommLineStatus(CLS_ATCMD);
-  ret_val = 0; // not initialized yet
-  
-  // Disable messages about new SMS from the GSM module 
-  SendATCmdWaitResp("AT+CNMI=2,0", 1000, 50, "OK", 2);
-
-  // send AT command to init memory for SMS in the SIM card
-  // response:
-  // +CPMS: <usedr>,<totalr>,<usedw>,<totalw>,<useds>,<totals>
-  if (AT_RESP_OK == SendATCmdWaitResp("AT+CPMS=\"SM\",\"SM\",\"SM\"", 1000, 1000, "+CPMS:", 10)) {
-    ret_val = 1;
-  }
-  else ret_val = 0;
-
-  SetCommLineStatus(CLS_FREE);
-  return (ret_val);
 }
 
 int GSM::isIP(const char* cadena)

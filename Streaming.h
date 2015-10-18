@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <Arduino.h>
 #include "LOG.h"
 
-#define __ST_LOG_LEVEL 3
+#define __ST_LOG_LEVEL 0
 static LOG _st_logme(__ST_LOG_LEVEL);
 
 // Generic template
